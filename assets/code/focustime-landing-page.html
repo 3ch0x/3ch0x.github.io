@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Add after the viewport meta tag -->
+    <meta name="description" content="FocusTime helps Windows users create a calm, distraction-free digital environment for better focus and productivity through app management and timed sessions.">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://focustime.app/">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="FocusTime - Find Your Calm Focus on Windows">
+    <meta property="og:description" content="Create a distraction-free digital environment on Windows with FocusTime's app management and timed focus sessions.">
+    <meta property="og:image" content="https://focustime.app/images/focustime-og-image.png">
+    <meta property="og:url" content="https://focustime.app/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FocusTime - Find Your Calm Focus on Windows">
+    <meta name="twitter:description" content="Create a distraction-free digital environment on Windows with FocusTime's app management and timed focus sessions.">
+    <meta name="twitter:image" content="https://focustime.app/images/focustime-og-image.png">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusTime - Find Your Calm Focus on Windows</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HN9CB02X9J"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-HN9CB02X9J');
+    </script>
+    <style>
+        /* --- Calm Blue/Teal Palette --- */
+        :root {
+            --color-bg-primary: #E0F7FA; /* Light Cyan */
+            --color-bg-secondary: #E0F2F7; /* Even lighter blue */
+            --color-text-primary: #004D40; /* Dark Teal */
+            --color-text-secondary: #455A64; /* Blue-Grey */
+            --color-accent: #00796B; /* Darker Teal (for headers, links) */
+            --color-btn-primary-bg: #4DB6AC; /* Medium Teal */
+            --color-btn-primary-hover-bg: #00897B; /* Stronger Teal */
+            --color-btn-secondary-border: #4DB6AC; /* Medium Teal */
+            --color-btn-secondary-text: #004D40; /* Dark Teal */
+            --color-btn-secondary-hover-bg: #B2DFDB; /* Lighter Teal */
+            --color-card-bg: #F1F8E9; /* Very light green - subtle variation */
+            --color-border: #80CBC4; /* Light Teal */
+            --color-code-bg: #E0F7FA; /* Same as primary bg */
+            --color-code-border: #A5D6A7; /* Lighter Green border for code */
+            --color-code-text: #558B2F; /* Medium Green for code text */
+            --color-checkmark: #00796B; /* Darker Teal for list markers */
+        }
+
+        /* Custom styles for the page */
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Background animation canvas */
+        #bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Behind all content */
+            pointer-events: none; /* Allow clicks to pass through */
+        }
+
+        /* Section header styling */
+        .section-header {
+            font-size: 2.25rem; /* 36px */
+            font-weight: 600;
+            margin-bottom: 1.5rem; /* 24px */
+            color: var(--color-accent);
+            text-align: center;
+        }
+
+        /* Button styling */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem; /* 12px 24px */
+            border-radius: 0.5rem; /* 8px */
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-decoration: none;
+            text-align: center; /* Ensure text is centered */
+        }
+
+        .btn-primary {
+            background-color: var(--color-btn-primary-bg);
+            color: white; /* White text on colored button */
+            border: 2px solid var(--color-btn-primary-bg); /* Match border */
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-btn-primary-hover-bg);
+            border-color: var(--color-btn-primary-hover-bg); /* Match border */
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-btn-secondary-text);
+            border: 2px solid var(--color-btn-secondary-border);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-btn-secondary-hover-bg);
+            color: var(--color-text-primary); /* Darker text on hover */
+            transform: translateY(-2px);
+        }
+
+        /* Card styling for screenshots and instructions */
+        .card {
+            background-color: var(--color-card-bg);
+            border-radius: 0.75rem; /* 12px */
+            padding: 1.5rem; /* 24px */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03); /* Softer shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--color-border); /* Add a subtle border */
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05); /* Softer hover shadow */
+        }
+
+        /* Navigation link styling */
+        nav a {
+            transition: color 0.3s ease;
+            font-weight: 500; /* Adjusted for Nunito */
+            color: var(--color-text-secondary); /* Use secondary text color */
+        }
+        nav a:hover {
+            color: var(--color-accent); /* Accent color on hover */
+        }
+         nav a.btn { /* Style for the download button in nav */
+             color: white; /* Override text color for button */
+         }
+        nav a.btn:hover {
+             color: white; /* Keep white text on hover */
+        }
+
+
+        /* Code block styling */
+        pre {
+            background-color: var(--color-code-bg);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            border: 1px solid var(--color-code-border);
+            color: var(--color-code-text);
+            font-size: 0.875rem; /* Smaller font for code blocks */
+            margin-top: 0.75rem; /* Space above code */
+            margin-bottom: 0.75rem; /* Space below code */
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .feature-list li {
+            padding-left: 1.5em; /* Indent list items */
+            position: relative;
+            margin-bottom: 0.5rem; /* Space out list items */
+        }
+        .feature-list li::before {
+            content: "•"; /* Use a simple bullet */
+            position: absolute;
+            left: 0;
+            color: var(--color-checkmark); /* Accent color for marker */
+            font-weight: bold;
+            font-size: 1.2em; /* Make bullet slightly larger */
+            top: -0.1em; /* Adjust vertical alignment */
+        }
+        .feature-list li strong {
+             color: var(--color-accent); /* Highlight key terms */
+        }
+
+        /* Adjust section padding */
+        section {
+            padding: 4rem 1.5rem; /* py-16 equivalent */
+        }
+         @media (min-width: 768px) { /* md */
+            section {
+                padding: 6rem 1.5rem; /* md:py-24 equivalent */
+            }
+         }
+         main {
+             padding: 4rem 1.5rem; /* py-16 equivalent */
+         }
+         @media (min-width: 768px) { /* md */
+             main {
+                 padding: 6rem 1.5rem; /* md:py-24 equivalent */
+             }
+         }
+         
+        /* Download counter styling */
+        .download-counter {
+            background-color: rgba(0, 121, 107, 0.1);
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            margin-top: 1rem;
+            display: inline-block;
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+
+        /* Admin panel styling */
+        #admin-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: white;
+            border: 1px solid var(--color-border);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            display: none;
+        }
+        
+        #admin-panel h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            color: var(--color-accent);
+        }
+        
+        .admin-stat {
+            margin-bottom: 0.5rem;
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+    <canvas id="bg-animation"></canvas>
+
+    <header class="py-6 sticky top-0 z-50 bg-opacity-90 backdrop-blur-sm" style="background-color: rgba(224, 247, 250, 0.9);"> <div class="container mx-auto px-6 flex flex-wrap justify-between items-center">
+            <a href="#" class="text-3xl font-bold text-[var(--color-accent)] mb-2 sm:mb-0">FocusTime</a>
+            <nav class="space-x-4 sm:space-x-6 text-sm sm:text-base">
+                <a href="#features" class="hover:text-[var(--color-accent)]">What it Does</a>
+                <a href="#screenshots" class="hover:text-[var(--color-accent)]">See it Work</a>
+                <a href="#contribute" class="hover:text-[var(--color-accent)]">Open Source</a>
+                <a href="#download" class="btn btn-primary text-xs sm:text-sm download-btn">Get Started (Windows)</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-16 md:py-24 text-center">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight text-[var(--color-accent)]">
+            Navigate the Digital Current. Find Your Calm, Focused Space.
+        </h1>
+        <p class="text-lg sm:text-xl md:text-2xl mb-10 text-[var(--color-text-secondary)] max-w-3xl mx-auto">
+            The digital world can pull in so many directions. FocusTime offers a gentle anchor for your attention on Windows, designed to help you quiet the noise and dedicate your energy to what truly matters.
+        </p>
+        <div>
+            <a href="#features" class="btn btn-primary text-base sm:text-lg mr-2 sm:mr-4 mb-2 sm:mb-0">Explore How</a>
+            <a href="#download" class="btn btn-secondary text-base sm:text-lg download-btn">Download for Windows</a>
+        </div>
+         <p class="mt-6 text-sm text-[var(--color-text-secondary)]">(Currently available for Windows operating systems only)</p>
+    </main>
+
+    <section id="features" style="background-color: var(--color-bg-secondary);">
+        <div class="container mx-auto px-6">
+            <h2 class="section-header">Designed to Support Your Focus Journey</h2>
+            <div class="max-w-4xl mx-auto text-lg space-y-10 text-[var(--color-text-primary)]">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-3 text-[var(--color-accent)]">Create Your Productive Zone</h3>
+                    <p class="mb-4 text-[var(--color-text-secondary)]">
+                        Start a focus period by selecting the essential tools (apps) you need. FocusTime then acts as a gentle guardian, helping you stay within your chosen digital space by managing other applications based on your preferences.
+                    </p>
+                    <ul class="list-none space-y-2 feature-list text-[var(--color-text-secondary)]">
+                        <li><strong>App Sanctuary:</strong> Clearly define which applications are part of your focus environment.</li>
+                        <li><strong>Timed Calm:</strong> Set clear time boundaries for your focused sessions, adding structure.</li>
+                        <li><strong>Little Lifts:</strong> Receive subtle motivational quotes in the footer to encourage you along the way.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold mb-3 text-[var(--color-accent)]">Find Your Rhythm with Focus Modes</h3>
+                    <p class="mb-4 text-[var(--color-text-secondary)]">
+                        Choose a mode that aligns with your current energy and the demands of your task. Build confidence and structure step by step:
+                    </p>
+                    <ul class="list-none space-y-3 feature-list text-[var(--color-text-secondary)]">
+                        <li><strong>Ember (Gentle Start):</strong> "Kindling the spark." A supportive mode where you have the flexibility to pause if needed.</li>
+                        <li><strong>Forge (Building Momentum):</strong> "Shaping with intention." A more structured mode designed to help you commit, with sessions that run their course once started.</li>
+                        <li><strong>Obsidian (Deep Immersion):</strong> "Unbreakable focus." For when you're ready for deep, uninterrupted work. Sessions are non-stoppable and configured for maximum focus.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold mb-3 text-[var(--color-accent)]">A Gentle Guardian for Your Attention</h3>
+                    <p class="mb-4 text-[var(--color-text-secondary)]">
+                        Navigate digital distractions with configurable levels of support:
+                    </p>
+                    <ul class="list-none space-y-2 feature-list text-[var(--color-text-secondary)]">
+                        <li><strong>Soft Nudge:</strong> Distracting applications are simply minimized if they pop up.</li>
+                        <li><strong>Guided Return:</strong> Distracting apps are minimized, and one of your chosen focus apps is brought back to the front, gently guiding you back.</li>
+                        <li><strong>Clear Boundaries:</strong> For stronger focus, distracting applications are closed if they attempt to interrupt.</li>
+                        <li><strong>Essential Exceptions:</strong> Easily list apps (like your music player or file explorer) that should always remain accessible, regardless of the mode.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold mb-3 text-[var(--color-accent)]">Care for Yourself While You Focus</h3>
+                    <p class="mb-4 text-[var(--color-text-secondary)]">
+                        Receive optional, thoughtful reminders to support your wellbeing during longer periods of concentration:
+                    </p>
+                    <ul class="list-none space-y-2 feature-list text-[var(--color-text-secondary)]">
+                        <li><strong>Eye Comfort:</strong> Gentle prompts to follow the 20-20-20 rule.</li>
+                        <li><strong>Mindful Movement:</strong> A friendly nudge to stand up and stretch periodically.</li>
+                        <li><strong>Stay Refreshed:</strong> Reminders to drink water and stay hydrated.</li>
+                    </ul>
+                </div>
+
+                 <div>
+                     <h3 class="text-2xl font-semibold mb-3 text-[var(--color-accent)]">Simple to Use, Powerful in Support</h3>
+                     <ul class="list-none space-y-2 feature-list text-[var(--color-text-secondary)]">
+                         <li><strong>Stays Out of the Way:</strong> Easily minimize to the system tray.</li>
+                         <li><strong>Helpful Signals:</strong> Clear notifications for session starts, ends, and wellbeing reminders.</li>
+                         <li><strong>Remembers Your Flow:</strong> Your settings are saved, so you can easily return to your preferred focus environment.</li>
+                         <li><strong>Adjust to Your Rhythm:</strong> Option to fine-tune how frequently FocusTime checks for distractions.</li>
+                     </ul>
+                 </div>
+            </div>
+
+             <div class="mt-12 max-w-4xl mx-auto text-lg text-left md:text-center space-y-6 text-[var(--color-text-primary)]">
+                 <h3 class="text-2xl font-semibold pt-6 text-[var(--color-accent)]">A Supportive Digital Companion: How FocusTime Can Help Navigate Challenges</h3>
+                 <p class="text-[var(--color-text-secondary)]">
+                     Finding and maintaining focus in a digital world can be a significant challenge. FocusTime is built to provide structured support on your Windows PC, offering practical tools to help manage common hurdles:
+                 </p>
+                 <ul class="list-disc list-inside space-y-3 pl-4 md:pl-0 text-[var(--color-text-secondary)]">
+                     <li>
+                         <strong>Gently Minimizing Digital Pulls:</strong> By actively managing application access, it helps reduce the external digital stimuli that can easily fragment attention on your Windows desktop.
+                     </li>
+                     <li>
+                         <strong>Creating Predictable Work Blocks:</strong> The timer and distinct focus modes encourage breaking tasks into manageable, defined intervals, aiding both initiation and completion.
+                     </li>
+                     <li>
+                         <strong>Building Consistent Digital Habits:</strong> The progressive Focus Modes (Ember, Forge, Obsidian) allow you to choose appropriate levels of support, helping to gradually build comfort with sustained attention.
+                     </li>
+                     <li>
+                         <strong>Providing Clear Time Anchors:</strong> The visible countdown timer helps improve awareness of time passing and offers a tangible goal to stay engaged.
+                     </li>
+                     <li>
+                         <strong>Softening Task Switching Friction:</strong> By making it harder to impulsively switch away from focus tasks, FocusTime helps reduce the mental energy required to stay on track.
+                     </li>
+                 </ul>
+                 <p class="text-[var(--color-text-secondary)]">
+                     Think of FocusTime as a calming presence on your Windows PC, a tool designed to help you shape a digital environment where sustained focus feels more accessible and less like a constant struggle.
+                 </p>
+             </div>
+        </div>
+    </section>
+
+    <section id="screenshots">
+        <div class="container mx-auto px-6">
+            <h2 class="section-header">See the Interface</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <article class="card text-[var(--color-text-secondary)]">
+                    <img src="focustime_screenshots/resized/main.png" alt="FocusTime Main Interface on Windows" class="rounded-md mb-4 w-full h-auto object-cover aspect-video border border-[var(--color-border)]">
+                    <h3 class="text-xl font-semibold mb-2 text-[var(--color-accent)]">Your Calm Control Panel</h3>
+                    <p>Clean, intuitive design: easily choose your apps, set your time, and begin your focused session.</p>
+                </article>
+                <article class="card text-[var(--color-text-secondary)]">
+                    <img src="focustime_screenshots/resized/running.png" alt="FocusTime Session Running on Windows" class="rounded-md mb-4 w-full h-auto object-cover aspect-video border border-[var(--color-border)]">
+                    <h3 class="text-xl font-semibold mb-2 text-[var(--color-accent)]">Deep Work in Progress</h3>
+                    <p>The timer is a gentle reminder, while potential distractions are quietly managed.</p>
+                </article>
+                <article class="card text-[var(--color-text-secondary)]">
+                    <img src="focustime_screenshots/resized/settings.png" alt="FocusTime Settings Panel on Windows" class="rounded-md mb-4 w-full h-auto object-cover aspect-video border border-[var(--color-border)]">
+                    <h3 class="text-xl font-semibold mb-2 text-[var(--color-accent)]">Tailor it to Your Needs</h3>
+                    <p>Customize how distractions are handled, set essential exceptions, and adjust reminders for your unique flow.</p>
+                </article>
+            </div>
+             <p class="text-center mt-8 text-sm text-[var(--color-text-secondary)]">(Illustrative placeholders. Actual app screenshots will show the Windows UI. Apologies, images are not the best)</p>
+        </div>
+    </section>
+
+    <section id="contribute" style="background-color: var(--color-bg-secondary);">
+        <div class="container mx-auto px-6">
+            <h2 class="section-header">Built Together: Open Source & Community</h2>
+            <div class="max-w-3xl mx-auto text-lg text-[var(--color-text-secondary)] space-y-8">
+                <div class="card text-center">
+                    <p class="mb-4">
+                        FocusTime is a Windows open-source project, built with transparency and a belief in collaborative improvement. Your insights and contributions are welcome.
+                    </p>
+                    <a href="https://github.com/gourabdg47/FocusTime.git" target="_blank" class="btn btn-primary">
+                        Explore the Code on GitHub
+                    </a>
+                </div>
+
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-4 text-center text-[var(--color-accent)]">Join In: Build and Run from Source (Windows)</h3>
+                    <p class="mb-4">Curious about how it works or want to contribute? Here's how to get started on Windows:</p>
+                    <ol class="list-decimal list-inside space-y-3 mb-4">
+                        <li>**Essentials First:**
+                             <ul class="list-disc list-inside pl-6 mt-1">
+                                 <li>A Windows Operating System.</li>
+                                 <li>Ensure you have the ".NET desktop development" workload installed (via Visual Studio Installer or dotnet command line).</li>
+                                 <li>Git for Windows (or your preferred Git client).</li>
+                                 <li>While you can use Visual Studio (like 2019, 2022), command line is shown below!</li>
+                             </ul>
+                        </li>
+                        <li>Fetch the project code:
+                            <pre><code class="language-bash">git clone https://github.com/gourabdg47/FocusTime.git</code></pre>
+                        </li>
+                        <li>Move into the project folder:
+                            <pre><code class="language-bash">cd FocusTime</code></pre>
+                        </li>
+                        <li>Build and Run:
+                            <pre><code class="language-bash">dotnet build<br>dotnet run</code></pre>
+                        </li>
+                        <li>And there you have it!</li>
+
+                    </ol>
+                     <p class="text-sm text-center text-[var(--color-text-secondary)]">
+                         (These instructions are based on typical .NET project setup. Please verify against the GitHub repository's README for any specific requirements.)
+                     </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="download">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="section-header">Ready to Find Your Focus?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto text-[var(--color-text-secondary)]">
+                Take a step towards a calmer, more focused digital experience on your Windows PC. Download FocusTime today.
+            </p>
+            <a href="https://raw.githubusercontent.com/gourabdg47/FocusTime/master/bin/Executable/FocusTime.zip" class="btn btn-primary btn-large text-xl download-btn" id="main-download-btn">
+                Download FocusTime for Windows
+            </a>
+            <div class="download-counter mt-4">
+                <span id="download-count">0</span> people have downloaded FocusTime
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 border-t border-[var(--color-border)]" style="background-color: var(--color-bg-primary);"> <div class="container mx-auto px-6 text-center text-[var(--color-text-secondary)]">
+            <p>&copy; <span id="currentYear"></span> FocusTime Project. An Open Source Effort for Windows Users.</p>
+            <p class="text-sm mt-1">A tool to help you gently reclaim your attention.</p>
+        </div>
+    </footer>
+    
+    <!-- Admin Panel (Hidden by default) -->
+    <div id="admin-panel">
+        <h3>Download Statistics</h3>
+        <div class="admin-stat">Total Downloads: <span id="admin-download-count">0</span></div>
+        <div class="admin-stat">Last Download: <span id="admin-last-download">Never</span></div>
+        <button id="reset-counter" class="btn btn-secondary text-xs">Reset Counter</button>
+    </div>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Download tracking functionality
+        let downloadCount = 0;
+        
+        // Check if count exists in localStorage
+        if (localStorage.getItem('focusTimeDownloads')) {
+            downloadCount = parseInt(localStorage.getItem('focusTimeDownloads'));
+            document.getElementById('download-count').textContent = downloadCount;
+            
+            // Update admin panel if it exists
+            if (document.getElementById('admin-download-count')) {
+                document.getElementById('admin-download-count').textContent = downloadCount;
+            }
+        }
+        
+        // Add click event to all download buttons
+        const downloadButtons = document.querySelectorAll('.download-btn');
+        downloadButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Only count if it's a direct download link
+                if (this.getAttribute('href').includes('FocusTime.zip')) {
+                    // Increment counter
+                    downloadCount++;
+                    
+                    // Save to localStorage
+                    localStorage.setItem('focusTimeDownloads', downloadCount);
+                    
+                    // Update displayed count
+                    document.getElementById('download-count').textContent = downloadCount;
+                    
+                    // Update admin panel if it exists
+                    if (document.getElementById('admin-download-count')) {
+                        document.getElementById('admin-download-count').textContent = downloadCount;
+                    }
+                    
+                    // Update last download time
+                    const now = new Date();
+                    const formattedDate = now.toLocaleString();
+                    localStorage.setItem('focusTimeLastDownload', formattedDate);
+                    
+                    if (document.getElementById('admin-last-download')) {
+                        document.getElementById('admin-last-download').textContent = formattedDate;
+                    }
+                    
+                    // Track the download event in Google Analytics
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'download', {
+                            'event_category': 'engagement',
+                            'event_label': 'FocusTime Windows Download'
+                        });
+                    }
+                }
+            });
+        });
+        
+        // Admin panel toggle (press 'Ctrl+Alt+A' to toggle)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.altKey && e.key === 'a') {
+                const adminPanel = document.getElementById('admin-panel');
+                if (adminPanel.style.display === 'none' || !adminPanel.style.display) {
+                    adminPanel.style.display = 'block';
+                    
+                    // Update admin panel values
+                    document.getElementById('admin-download-count').textContent = downloadCount;
+                    
+                    const lastDownload = localStorage.getItem('focusTimeLastDownload') || 'Never';
+                    document.getElementById('admin-last-download').textContent = lastDownload;
+                } else {
+                    adminPanel.style.display = 'none';
+                }
+            }
+        });
+        
+        // Reset counter button
+        if (document.getElementById('reset-counter')) {
+            document.getElementById('reset-counter').addEventListener('click', function() {
+                downloadCount = 0;
+                localStorage.setItem('focusTimeDownloads', 0);
+                document.getElementById('download-count').textContent = '0';
+                document.getElementById('admin-download-count').textContent = '0';
+                alert('Download counter has been reset to zero.');
+            });
+        }
+
+        // Simple background particle animation
+        const canvas = document.getElementById('bg-animation');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        // Change particle color to match the calm palette (e.g., a semi-transparent teal)
+        const particleColor = 'rgba(77, 182, 172, 0.1)'; // Medium Teal, very transparent
+
+        class Particle {
+            constructor(x, y, radius, dx, dy) {
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.dx = dx;
+                this.dy = dy;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                ctx.fillStyle = particleColor;
+                ctx.fill();
+            }
+
+            update() {
+                if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+                    this.dx = -this.dx;
+                }
+                if (this.y + this.radius > canvas.height || 
+                    this.y - this.radius < 0) {
+                    this.dy = -this.dy;
+                }
+
+                this.x += this.dx;
+                this.y += this.dy;
+
+                this.draw();
+            }
+        }
+
+        function createParticles() {
+            particles = [];
+            const particleCount = Math.floor(canvas.width * canvas.height / 20000); // Adjust density based on screen size
+            
+            for (let i = 0; i < particleCount; i++) {
+                const radius = Math.random() * 3 + 1;
+                const x = Math.random() * (canvas.width - radius * 2) + radius;
+                const y = Math.random() * (canvas.height - radius * 2) + radius;
+                const dx = (Math.random() - 0.5) * 0.5; // Slow horizontal movement
+                const dy = (Math.random() - 0.5) * 0.5; // Slow vertical movement
+                
+                particles.push(new Particle(x, y, radius, dx, dy));
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(particle => {
+                particle.update();
+            });
+
+            // Connect particles with lines if they are close enough
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 100) { // Maximum distance for connection
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(77, 182, 172, ${0.05 * (1 - distance/100)})`; // Fade based on distance
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        // Initialize canvas and animation
+        window.addEventListener('resize', function() {
+            resizeCanvas();
+            createParticles();
+        });
+
+        // Run on page load
+        resizeCanvas();
+        createParticles();
+        animate();
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80, // Offset for fixed header
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
